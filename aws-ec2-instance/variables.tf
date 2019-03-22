@@ -17,3 +17,11 @@ variable "name" {
   description = "name to pass to Name tag"
   default = "Provisioned by Terraform"
 }
+variable "associate_public_ip_address" {
+  description = "Associate a public IP address with the instance"
+  default     = "true"
+}
+variable "user_data" {
+  description = "Instance user data. Do not pass gzip-compressed data via this argument"
+  default     = ""
+}
