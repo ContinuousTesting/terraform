@@ -23,7 +23,7 @@ variable "associate_public_ip_address" {
 }
 variable "user_data" {
   description = "Instance user data. Do not pass gzip-compressed data via this argument"
-  default     = "${file("user_data/user_data.sh")}"
+  default     = "")}"
 }
 variable "key_name" {
   description = "Name the key you will use to access the instance "
