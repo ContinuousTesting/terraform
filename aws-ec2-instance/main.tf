@@ -7,21 +7,22 @@ provider "aws" {
 }
 
 resource "aws_instance" "awslinux" {
-  
   ami           = "${var.ami_id}"
   instance_type = "${var.instance_type}"
   availability_zone = "${var.aws_region}a"
-  key_name = "${var.key_name}"
   user_data = "${data.template_file.user_data.rendered}"
- 
+  key_name = "${var.key_name}"
   
-tags {
+
+  
+  tags {
     Name = "${var.name}"
   }
 }
- data "template_file" "script" {
-   template = "${file("user_data/user_data.sh")}" 
-vars { 
-  user_data = "${var.user_data}" 
-  }
-}
+  data "template_file" "user_data" {
+  template = "${file("user_data/user_data.sh")}" 
+  
+  vars {
+     name = "${var.name}"
+      }
+   }
