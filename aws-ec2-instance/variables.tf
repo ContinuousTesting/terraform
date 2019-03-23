@@ -25,9 +25,10 @@ variable "user_data" {
   description = "Instance user data. Do not pass gzip-compressed data via this argument"
   default     = ""
 }
-variable "aws_key_name" {
+variable "key_name" {
   description = "Name the key you will use to access the instance "
   default     = "devopslab"
+  }
 
 
 
