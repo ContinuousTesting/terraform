@@ -1,4 +1,6 @@
-#   AWS linux ec2 instance Development env NodeJS, GIT, MAven, Java 1.8 awscli
+#!/usr/bin/env bash
+# AWS linux ec2 instance Development env NodeJS, GIT, MAven, Java 1.8 awscli
+
 sudo yum update -y
 #install git
 sudo yum install -y git
