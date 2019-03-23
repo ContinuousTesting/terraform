@@ -21,10 +21,7 @@ variable "associate_public_ip_address" {
   description = "Associate a public IP address with the instance"
   default     = "true"
 }
-variable "user_data" {
-  description = "Instance user data. Do not pass gzip-compressed data via this argument"
-  default     = ""
-}
+
 variable "key_name" {
   description = "Name the key you will use to access the instance "
   default     = "devopslab"
