@@ -12,16 +12,13 @@ resource "aws_instance" "awslinux" {
   availability_zone = "${var.aws_region}a"
   user_data = "${data.template_file.user_data.rendered}"
   key_name = "${var.key_name}"
-  
-
-  
-  tags {
+ tags {
     Name = "${var.name}"
   }
 }
-  data "template_file" "user_data" {
-  template = "${file("user_data/user_data.sh")}" 
-  
+
+data "template_file" "user_data" {
+  template = "${file("user_data/user_data.sh")}"   
   vars {
      name = "${var.name}"
       }
