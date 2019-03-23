@@ -11,7 +11,8 @@ resource "aws_instance" "awslinux" {
   instance_type = "${var.instance_type}"
   availability_zone = "${var.aws_region}a"
   user_data = "${var.user_data}"
-  key_name = "devopslab"
+  key_name = "${aws.key.name}"
+  
   tags {
     Name = "${var.name}"
   }
