@@ -12,7 +12,7 @@ resource "aws_instance" "awslinux" {
   instance_type = "${var.instance_type}"
   availability_zone = "${var.aws_region}a"
   key_name = "${var.key_name}"
-  user_data = "${var.user_data}" 
+  user_data = "${data.template_file.user_data.rendered}"
  
   
 tags {
