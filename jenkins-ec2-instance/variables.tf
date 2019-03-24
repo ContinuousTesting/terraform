@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "name" {
   description = "name to pass to Name tag"
-  default = "devhost"
+  default = "Jenkins"
 }
 variable "associate_public_ip_address" {
   description = "Associate a public IP address with the instance"
