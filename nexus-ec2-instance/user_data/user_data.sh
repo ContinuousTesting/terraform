@@ -33,6 +33,7 @@ tar xvzf nexus-2.11.2-03-bundle.tar.gz
 sudo mv nexus-2.11.2-03 /opt/
 cd /opt
 mv nexus-2.11.2-03/ nexus
+cd /opt/nexus
 sudo mv sonatype-work /data/
 sudo chown nexus:nexus nexus -R
 sudo chown nexus:nexus /data -R
