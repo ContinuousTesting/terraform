@@ -31,6 +31,7 @@ wget www.sonatype.org/downloads/nexus-2.11.2-03-bundle.tar.gz
 wget http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz
 tar xvzf nexus-2.11.2-03-bundle.tar.gz
 sudo mv nexus-2.11.2-03 /opt/
+cd /opt
 mv nexus-2.11.2-03/ nexus
 sudo mv sonatype-work /data/
 sudo chown nexus:nexus nexus -R
