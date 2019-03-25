@@ -31,15 +31,15 @@ wget www.sonatype.org/downloads/nexus-2.11.2-03-bundle.tar.gz
 wget http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz
 tar xvzf nexus-2.11.2-03-bundle.tar.gz
 sudo mv nexus-2.11.2-03 /opt/
-sudo ln -s nexus-2.11.2-03/ nexus
+mv nexus-2.11.2-03/ nexus 
 sudo mv sonatype-work /data/
-sudo chown nexus:nexus nexus-2.11.2-03 -R
+sudo chown nexus:nexus nexus -R
 sudo chown nexus:nexus /data -R
 cd /opt
 sudo ln -s /data/sonatype-work sonatype-work
 # Setup Nexus as service
 sudo cp nexus/bin/nexus /etc/init.d/nexus
-sudo chkconfig --add nexus defult 
+sudo chkconfig --add nexus 
 sudo service nexus start
 # tail -200f /data/sonatype-work/nexus/logs/nexus.log
 
