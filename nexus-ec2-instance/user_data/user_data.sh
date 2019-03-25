@@ -39,7 +39,7 @@ cd /opt
 sudo ln -s /data/sonatype-work sonatype-work
 # Setup Nexus as service
 sudo cp nexus/bin/nexus /etc/init.d/nexus
-sudo chkconfig --add nexus 
+sudo chkconfig --add nexus defult 
 sudo service nexus start
 # tail -200f /data/sonatype-work/nexus/logs/nexus.log
 
