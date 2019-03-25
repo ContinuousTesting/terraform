@@ -17,7 +17,7 @@ variable "azs" {
 }
 
 module "aurora" {
-  source                          = "../../"
+  source                          = ""
   name                            = "aurora-rds"
   engine                          = "aurora-mysql"
   engine_version                  = "5.7.12"
@@ -61,7 +61,7 @@ resource "aws_security_group_rule" "allow_access" {
 }
 
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source = ""
   name   = "example"
   cidr   = "10.0.0.0/16"
   azs    = ["${var.azs}"]
