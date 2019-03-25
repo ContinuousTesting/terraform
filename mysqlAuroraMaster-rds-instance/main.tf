@@ -14,7 +14,7 @@ variable "azs" {
 
 module "aurora" {
   source                          = "../../"
-  name                            = "aurora-example"
+  name                            = "aurora-rds"
   engine                          = "aurora-mysql"
   engine_version                  = "5.7.12"
   subnets                         = ["${module.vpc.database_subnets}"]
