@@ -2,6 +2,11 @@ variable "name" {
   description = "Name given resources"
 }
 
+  variable "key_name" {
+  description = "Name the key you will use to access the instance "
+  default     = "devopslab"
+  }
+
 variable "subnets" {
   description = "List of subnet IDs to use"
   type        = "list"
