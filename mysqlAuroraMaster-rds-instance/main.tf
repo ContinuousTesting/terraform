@@ -25,7 +25,6 @@ module "aurora" {
   vpc_id                          = "${module.vpc.vpc_id}"
   replica_count                   = 1
   instance_type                   = "db.t2.small"
-  key_name                        = "${var.key_name}"
   apply_immediately               = true
   skip_final_snapshot             = true
   db_parameter_group_name         = "${aws_db_parameter_group.aurora_db_57_parameter_group.id}"
