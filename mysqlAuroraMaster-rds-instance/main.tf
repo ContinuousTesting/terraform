@@ -1,14 +1,14 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 
 variable "azs" {
   type = "list"
 
   default = [
-    "us-east-1a",
-    "us-east-1b",
-    "us-east-1c",
+    "us-east-2a",
+    "us-east-2b",
+    "us-east-2c",
   ]
 }
 
@@ -20,7 +20,8 @@ module "aurora" {
   subnets                         = ["${module.vpc.database_subnets}"]
   vpc_id                          = "${module.vpc.vpc_id}"
   replica_count                   = 1
-  instance_type                   = "db.t2.medium"
+  instance_type                   = "db.t2.small"
+  key_name                        = "${var.key_name}" 
   apply_immediately               = true
   skip_final_snapshot             = true
   db_parameter_group_name         = "${aws_db_parameter_group.aurora_db_57_parameter_group.id}"
