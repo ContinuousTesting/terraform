@@ -17,7 +17,7 @@ variable "azs" {
 }
 
 module "aurora" {
-  source                          = ""
+  source                          = "../../"
   name                            = "aurora-rds"
   engine                          = "aurora-mysql"
   engine_version                  = "5.7.12"
@@ -61,7 +61,7 @@ resource "aws_security_group_rule" "allow_access" {
 }
 
 module "vpc" {
-  source = ""
+  source = "terraform-aws-modules/vpc/aws"
   name   = "example"
   cidr   = "10.0.0.0/16"
   azs    = ["${var.azs}"]
@@ -99,7 +99,7 @@ resource "aws_iam_policy" "aurora_mysql_policy_iam_auth" {
         "rds-db:connect"
       ],
       "Resource": [
-        "arn:aws:rds-db:us-east-1:123456789012:dbuser:${module.aurora.this_rds_cluster_resource_id}/jane_doe"
+        "arn:aws:rds-db:us-east-2:123456789012:dbuser:${module.aurora.this_rds_cluster_resource_id}/jane_doe"
       ]
     }
   ]
