@@ -17,7 +17,7 @@ variable "azs" {
 }
 
 module "aurora" {
-  source                          = "../../"
+  source                          = "github.com/terraform-aws-modules/terraform-aws-rds-aurora.git"
   name                            = "example"
   engine                          = "aurora-mysql"
   engine_version                  = "5.7.12"
