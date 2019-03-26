@@ -18,6 +18,7 @@ echo '
 export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
 PATH=$JAVA_HOME/bin:$PATH
 ' >> /home/ec2-user/.bashrc
+sudo source ~/.bashrc
 # install AWS CLI
 sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 sudo unzip awscli-bundle.zip
@@ -28,7 +29,7 @@ sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
 export NVM_DIR="/home/ec2-user/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm install 4.4.5
 node -e "console.log('Running Node.js ' + process.version)"
-#install gulp 
+#install gulp
 npm install --global gulp-cli
 #Install Jenkins
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
