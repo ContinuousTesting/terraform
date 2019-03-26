@@ -18,7 +18,7 @@ echo '
 export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
 PATH=$JAVA_HOME/bin:$PATH
 ' >> /home/ec2-user/.bashrc
-sudo source ~/.bashrc
+sudo source /home/ec2-user/.bashrc
 # install AWS CLI
 sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 sudo unzip awscli-bundle.zip
