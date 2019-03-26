@@ -52,8 +52,8 @@ sudo rm nexus-latest-bundle.tar.gz
 sudo ln -s nexus-2.14.12-02 nexus
 sudo chown -R ec2-user:ec2-user nexus
 sudo chown -R ec2-user:ec2-user nexus-2.14.12-02
-# sudo chown -R ec2-user:ec2-user sonatype-work
-nexus/bin/nexus start 
+sudo chown -R ec2-user:ec2-user sonatype-work
+sudo nexus/bin/nexus start
 # Nexus will run on port HOST_NAME:8081/nexus/
 #sudo cp nexus/bin/nexus /etc/init.d/nexus
 # sudo chkconfig --add nexus
