@@ -25,8 +25,8 @@ sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle
 sudo unzip awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 # Install and start docker
-sudo yum install -y docker
-sudo service docker start
+# sudo yum install -y docker
+# sudo service docker start
 # Install Nexus Artifactory
 # sudo adduser nexus
 # wget www.sonatype.org/downloads/nexus-2.11.2-03-bundle.tar.gz
@@ -41,8 +41,20 @@ sudo service docker start
 # sudo chown nexus:nexus /data -R
 # cd /opt
 # sudo ln -s /data/sonatype-work sonatype-work
-# Setup Nexus as service
-# sudo cp nexus/bin/nexus /etc/init.d/nexus
+
+# tail -200f /data/sonatype-work/nexus/logs/nexus.log
+
+wget http://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz
+sudo cp nexus-latest-bundle.tar.gz /usr/local
+cd /usr/local
+sudo tar -xvzf nexus-latest-bundle.tar.gz
+sudo rm nexus-latest-bundle.tar.gz
+sudo ln -s nexus-2.14.12-02 nexus
+sudo chown -R ec2-user:ec2-user nexus
+sudo chown -R ec2-user:ec2-user nexus-2.14.12-02
+# sudo chown -R ec2-user:ec2-user sonatype-work
+nexus/bin/nexus start 
+# Nexus will run on port HOST_NAME:8081/nexus/
+#sudo cp nexus/bin/nexus /etc/init.d/nexus
 # sudo chkconfig --add nexus
 # sudo service nexus start
-# tail -200f /data/sonatype-work/nexus/logs/nexus.log
