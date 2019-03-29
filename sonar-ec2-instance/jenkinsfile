@@ -6,20 +6,20 @@ environment {
     stages {
         stage('Download terraform plans') {
             steps {
-              git clone https://github.com/devopslabinc/terraform.git
+              sh git 'clone https://github.com/devopslabinc/terraform.git'
             }
         }
 
         stage('init') {
             steps {
-                sh  ' cd terraform/nexus* '
+                sh  ' cd terraform/sonar* '
                 sh  '  ${TERRAFORM_CMD} init -backend=true -input=false '
 
 
             }
         }
         stage('plan') {
-            steps {{
+            steps {
                 sh '${TERRAFORM_CMD} plan -out=tfplan -input=false '
 
                 script {
