@@ -5,11 +5,7 @@ terraform {
 provider "aws" {
   region = "${var.aws_region}"
 }
-backend "s3" {
-    bucket = "zlabtfstate"
-    key    = "/nexus/nexus.tfstate"
-    region = "us-east-2"
-  }
+
 
 resource "aws_instance" "awslinux" {
   ami           = "${var.ami_id}"
