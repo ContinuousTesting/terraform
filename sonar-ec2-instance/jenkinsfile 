@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        node {
-            label 'master'
-        }
-    }
+    agent any
 environment {
         TERRAFORM_CMD = '/usr/local/terraform'
     }
@@ -16,18 +12,16 @@ environment {
 
         stage('init') {
             steps {
-                sh  """
-                    cd terraform/nexus*
-                    ${TERRAFORM_CMD} init -backend=true -input=false
-                    """
+                sh  ' cd terraform/nexus* '
+                sh  '  ${TERRAFORM_CMD} init -backend=true -input=false '
+
 
             }
         }
         stage('plan') {
             steps {{
-                sh  """
-                    ${TERRAFORM_CMD} plan -out=tfplan -input=false
-                    """
+                sh '${TERRAFORM_CMD} plan -out=tfplan -input=false '
+
                 script {
                   timeout(time: 10, unit: 'MINUTES') {
                     input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
@@ -37,9 +31,8 @@ environment {
         }
         stage('apply') {
             steps {
-                sh  """
-                    ${TERRAFORM_CMD} apply -lock=false -input=false tfplan
-                    """
+                sh  '${TERRAFORM_CMD} apply -lock=false -input=false tfplan'
+
 }
         }
     }
