@@ -6,8 +6,8 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 backend "s3" {
-    bucket = "terraformstate"
-    key    = "/home/ec2-user/s3key"
+    bucket = "zlabtfstate"
+    key    = "/nexus/nexus.tfstate"
     region = "us-east-2"
   }
 
