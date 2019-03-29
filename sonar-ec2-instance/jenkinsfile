@@ -2,6 +2,8 @@ pipeline {
     agent any
 environment {
         TERRAFORM_CMD = '/usr/local/bin/terraform'
+        AWS_SHARED_CREDENTIALS_FILE = '/home/ec2-user/.aws/credentials'
+        profile = 'default'
     }
     stages {
         stage('Download terraform plans') {
