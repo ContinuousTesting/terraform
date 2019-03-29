@@ -1,26 +1,28 @@
 pipeline {
     agent any
 environment {
-        TERRAFORM_CMD = '/usr/local/terraform'
+        TERRAFORM_CMD = '/usr/local/bin/terraform'
     }
     stages {
         stage('Download terraform plans') {
             steps {
-              sh git 'clone https://github.com/devopslabinc/terraform.git'
+
+              sh 'mkdir -p tmp && cd tmp && rm -fr * && git clone https://github.com/devopslabinc/terraform.git'
             }
         }
 
         stage('init') {
             steps {
-                sh  ' cd terraform/sonar* '
-                sh  '  ${TERRAFORM_CMD} init -backend=true -input=false '
+
+                sh  'cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} init -backend=true -input=false  '
 
 
             }
         }
         stage('plan') {
             steps {
-                sh '${TERRAFORM_CMD} plan -out=tfplan -input=false '
+
+                sh 'cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} plan -out=tfplan -input=false  '
 
                 script {
                   timeout(time: 10, unit: 'MINUTES') {
@@ -31,7 +33,8 @@ environment {
         }
         stage('apply') {
             steps {
-                sh  '${TERRAFORM_CMD} apply -lock=false -input=false tfplan'
+
+                sh  'cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} apply -lock=false -input=false tfplan '
 
 }
         }
