@@ -26,3 +26,7 @@ variable "key_name" {
   description = "Name the key you will use to access the instance "
   default     = "devopslab"
   }
+  variable "AWS_SHARED_CREDENTIALS_FILE" {
+    description = "AWS credentials  "
+    default     = "/home/ec2-user/.aws/credentials"
+    }
