@@ -4,12 +4,6 @@ environment {
         TERRAFORM_CMD = '/usr/local/bin/terraform'
     }
     stages {
-        stage('Downloading  terraform plans') {
-            steps {
-
-sh 'echo '
-            }
-        }
 
         stage('init') {
             steps {
