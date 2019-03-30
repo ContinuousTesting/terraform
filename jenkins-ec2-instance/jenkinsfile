@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+environment {
+        TERRAFORM_CMD = '/usr/local/bin/terraform'
+    }
+    stages {
+        stage('Download terraform plans') {
+            steps {
+
+sh 'mkdir -p tmp && cd tmp && rm -fr * && git clone https://github.com/devopslabinc/terraform.git'
+            }
+        }
+
+        stage('init') {
+            steps {
+
+sh 'cd /var/lib/jenkins/workspace/jenkinspipline/tmp/terraform/jenkins-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) && cd /var/lib/jenkins/workspace/jenkinspipline/tmp/terraform/jenkins-ec2-instance && ${TERRAFORM_CMD} init -backend=true -input=false '
+
+
+            }
+        }
+        stage('plan') {
+            steps {
+
+sh 'cd /var/lib/jenkins/workspace/jenkinspipline/tmp/terraform/jenkins-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid)  && ${TERRAFORM_CMD} plan -out=tfplan -input=false'
+
+                script {
+                  timeout(time: 10, unit: 'MINUTES') {
+                    input(id: "Deploy Gate", message: "Deploy jenkins on ec2 ?", ok: 'Deploy')
+                  }
+                }
+            }
+        }
+        stage('apply') {
+            steps {
+
+sh 'export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) &&  cd /var/lib/jenkins/workspace/jenkinspipline/tmp/terraform/jenkins-ec2-instance && echo yes | ${TERRAFORM_CMD} apply -lock=false -input=false tfplan '
+
+}
+        }
+    }
+}
