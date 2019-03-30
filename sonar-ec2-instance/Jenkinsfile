@@ -16,7 +16,7 @@ sh 'cd sonar-ec2-instance && ${TERRAFORM_CMD} init -backend=true -input=false '
         stage('plan') {
             steps {
 
-sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) > /dev/null 2>&1 && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) > /dev/null 2>&1 && ${TERRAFORM_CMD} plan -out=tfplan -input=false && cat tfplan'
+sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key > /dev/null 2>&1) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid > /dev/null 2>&1) && ${TERRAFORM_CMD} plan -out=tfplan -input=false && cat tfplan'
 
                 script {
                   timeout(time: 10, unit: 'MINUTES') {
@@ -28,7 +28,7 @@ sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) > /de
         stage('apply') {
             steps {
 
-sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) > /dev/null && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) > /dev/null 2>&1 && echo yes | ${TERRAFORM_CMD} apply -lock=false -input=false tfplan && cat terraform.tfstate '
+sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) > /dev/null && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid > /dev/null 2>&1) && echo yes | ${TERRAFORM_CMD} apply -lock=false -input=false tfplan && cat terraform.tfstate '
 
 }
         }
