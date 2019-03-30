@@ -2,8 +2,6 @@ pipeline {
     agent any
 environment {
         TERRAFORM_CMD = '/usr/local/bin/terraform'
-        AWS_SHARED_CREDENTIALS_FILE = '/home/ec2-user/.aws/credentials'
-        profile = 'default'
     }
     stages {
         stage('Download terraform plans') {
@@ -16,7 +14,7 @@ environment {
         stage('init') {
             steps {
 
-                sh  'cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} init -backend=true -input=false  '
+sh 'export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) && cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} init -backend=true -input=false '
 
 
             }
@@ -24,11 +22,11 @@ environment {
         stage('plan') {
             steps {
 
-                sh 'cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} plan -out=tfplan -input=false  '
+sh 'export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) && cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} plan -out=tfplan -input=false'
 
                 script {
                   timeout(time: 10, unit: 'MINUTES') {
-                    input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
+                    input(id: "Deploy Gate", message: "Deploy SonarQube on ec2 ?", ok: 'Deploy')
                   }
                 }
             }
@@ -36,7 +34,7 @@ environment {
         stage('apply') {
             steps {
 
-                sh  'cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && ${TERRAFORM_CMD} apply -lock=false -input=false tfplan '
+sh 'export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid) &&  cd /var/lib/jenkins/workspace/sonarpipline/tmp/terraform/sonar-ec2-instance && echo yes | ${TERRAFORM_CMD} apply -lock=false -input=false tfplan '
 
 }
         }
