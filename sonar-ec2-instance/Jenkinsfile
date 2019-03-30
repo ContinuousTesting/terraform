@@ -4,10 +4,10 @@ environment {
         TERRAFORM_CMD = '/usr/local/bin/terraform'
     }
     stages {
-        stage('Download terraform plans') {
+        stage('Downloading  terraform plans') {
             steps {
 
-sh 'mkdir -p tmp && cd tmp && rm -fr * && git clone https://github.com/devopslabinc/terraform.git'
+sh 'echo '
             }
         }
 
