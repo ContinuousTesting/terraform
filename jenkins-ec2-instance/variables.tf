@@ -10,7 +10,7 @@ variable "ami_id" {
 
 variable "instance_type" {
   description = "type of EC2 instance to provision."
-  default = "t2.micro"
+  default = "t2.small"
 }
 
 variable "name" {
@@ -26,7 +26,3 @@ variable "key_name" {
   description = "Name the key you will use to access the instance "
   default     = "devopslab"
   }
-
-
-
-
