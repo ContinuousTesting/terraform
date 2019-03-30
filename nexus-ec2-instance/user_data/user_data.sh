@@ -62,7 +62,6 @@ sudo chmod 400 /etc/init.d/nexus.sh
 sudo chmod +x /etc/init.d/nexus.sh
 sudo sed -i "1i#!/bin/bash" /etc/init.d/nexus.sh
 sudo sed -i "3isudo /usr/local/nexus/bin/nexus start" /etc/init.d/nexus.sh
-sudo chmod +x /etc/init.d/nexus.sh
 sudo /usr/local/nexus/bin/nexus start
 # Nexus will run on port HOST_NAME:8081/nexus/
 #sudo cp nexus/bin/nexus /etc/init.d/
