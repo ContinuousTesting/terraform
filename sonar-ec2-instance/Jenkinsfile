@@ -22,11 +22,11 @@ sh 'cd sonar-ec2-instance && ${TERRAFORM_CMD} init -backend=true -input=false '
         stage('plan') {
             steps {
 
-sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid)  && ${TERRAFORM_CMD} plan -out=tfplan -input=false'
+sh 'cd sonar-ec2-instance && export AWS_SECRET_ACCESS_KEY=$(cat /.aws/key) && export AWS_ACCESS_KEY_ID=$(cat /.aws/keyid)  && ${TERRAFORM_CMD} plan -out=tfplan -input=false && cat terraform.tfstate'
 
                 script {
                   timeout(time: 10, unit: 'MINUTES') {
-                    input(id: "Deploy Gate", message: "Deploy SonarQube instance  on ec2 ?", ok: 'Deploy')
+                    input(id: "Deploy Gate", message: "Deploy SonarQube  on ec2 small ?", ok: 'Deploy')
                   }
                 }
             }
