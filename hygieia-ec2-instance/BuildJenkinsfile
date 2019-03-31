@@ -7,7 +7,7 @@ environment {
 
    stage('Preparation ') {
      steps {
-      sh 'git clone https://github.com/Hygieia/hygieia-core.git'
+      sh 'rm -fr * && git clone https://github.com/Hygieia/hygieia-core.git'
       sh 'git clone https://github.com/Hygieia/Hygieia.git'
       sh 'mv hygieia-core Hygieia/hygieia-core '
    }
