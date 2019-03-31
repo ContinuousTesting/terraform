@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+environment {
+        mvnHome = '/usr/share/apache-maven'
+    }
+    stages {
+
+   stage('Preparation ') {
+      sh "git clone https://github.com/Hygieia/hygieia-core.git"
+      sh "git clone https://github.com/Hygieia/Hygieia.git"
+      sh " mv hygieia-core Hygieia/hygieia-core "
+
+   }
+   stage('Build') {
+
+         sh "cd Hygieia/hygieia-core/ && '${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+         sh "cd Hygieia && '${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+         sh " zip -r hygieia.zip Hygieia/ "
+      }
+
+   stage('Results') {
+      junit '**/target/surefire-reports/TEST-*.xml'
+      junit '**/**/target/surefire-reports/TEST-*.xml'
+      junit '**/**/**/target/surefire-reports/TEST-*.xml'
+      archive 'Hygieia.zip'
+   }
+stage('Publish') {
