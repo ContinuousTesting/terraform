@@ -6,16 +6,16 @@ environment {
     stages {
 
    stage('Preparation ') {
-      sh "git clone https://github.com/Hygieia/hygieia-core.git"
-      sh "git clone https://github.com/Hygieia/Hygieia.git"
-      sh " mv hygieia-core Hygieia/hygieia-core "
+      sh 'git clone https://github.com/Hygieia/hygieia-core.git'
+      sh 'git clone https://github.com/Hygieia/Hygieia.git'
+      sh 'mv hygieia-core Hygieia/hygieia-core '
 
    }
    stage('Build') {
 
-         sh "cd Hygieia/hygieia-core/ && '${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-         sh "cd Hygieia && '${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-         sh " zip -r hygieia.zip Hygieia/ "
+         sh 'cd Hygieia/hygieia-core/ && '${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+         sh 'cd Hygieia && ${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package'
+         sh 'zip -r hygieia.zip Hygieia/ '
       }
 
    stage('Results') {
@@ -25,3 +25,7 @@ environment {
       archive 'Hygieia.zip'
    }
 stage('Publish') {
+nexusPublisher nexusInstanceId: '1', nexusRepositoryId: 'cloud9', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'hygieia.zip', groupId: 'hyg', packaging: 'rar', version: '1']]]
+}
+   }
+      }
