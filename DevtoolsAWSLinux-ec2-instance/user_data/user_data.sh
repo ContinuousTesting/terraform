@@ -30,3 +30,5 @@ nvm install 4.4.5
 node -e "console.log('Running Node.js ' + process.version)"
 # install gulp
 npm install --global gulp-cli
+#Install docker 
+sudo yum install docker 
