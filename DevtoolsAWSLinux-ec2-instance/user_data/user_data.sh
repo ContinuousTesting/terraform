@@ -5,31 +5,34 @@ sudo yum update -y
 #install git
 sudo yum install -y git
 
+#Install Oracle Java Jdk1.814
+cd /tmp
+sudo wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
+sudo yum install -y jdk-8u141-linux-x64.rpm
+echo 2 | sudo update-alternatives --config java
+
 # Install apache maven
 sudo touch /etc/yum.repos.d/epel-apache-maven.repo
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 sudo yum install -y apache-maven
-# Install java-1.8.0
-sudo yum install -y java-1.8.0
-# sudo yum remove -y java-1.7.0-openjdk
-echo 2 | sudo update-alternatives --config java
 # Configure Java development env set Java home /ec2-user
 sudo echo '
-export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
+export JAVA_HOME="/usr/java/jdk1.8.0_141/"
 PATH=$JAVA_HOME/bin:$PATH
 export M2_HOME="/usr/share/apache-maven"
 export M2=$M2_HOME/bin
 export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /home/ec2-user/.bashrc
 sudo echo '
-export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
+export JAVA_HOME="/usr/java/jdk1.8.0_141/"
 PATH=$JAVA_HOME/bin:$PATH
 export M2_HOME="/usr/share/apache-maven"
 export M2=$M2_HOME/bin
 export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /.bashrc
 sudo source /home/ec2-user/.bashrc
+sudo source /.bashrc
 # install zip 7z
 sudo yum install -y p7zip-full p7zip-rar zip
 # install AWS CLI
