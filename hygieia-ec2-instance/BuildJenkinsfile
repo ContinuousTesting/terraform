@@ -1,9 +1,12 @@
 node {
    def mvnHome
-   stage('toolsetup') {
 
-      mvnHome = tool 'M3'
+   stages {
+          stage('toolsetup') {
+
+       mvnHome = tool 'M3'
    }
+   
 
    stage('Preparation ') {
      steps {
