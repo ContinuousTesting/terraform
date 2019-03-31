@@ -1,17 +1,16 @@
 pipeline {
     agent any
-    environment {
-            mvnHome = 'tool 'M3''
-        }
+      def mvnHome
 
-  stages {
+    stages {
 
    stage('Preparation ') {
-
      steps {
-      sh 'rm -fr * && git clone https://github.com/Hygieia/hygieia-core.git'
+
+      sh 'rm git clone https://github.com/Hygieia/hygieia-core.git'
       sh 'git clone https://github.com/Hygieia/Hygieia.git'
       sh 'mv hygieia-core Hygieia/hygieia-core '
+      mvnHome = tool 'M3'
    }
    }
    stage('Build') {
@@ -38,4 +37,3 @@ nexusPublisher nexusInstanceId: '1', nexusRepositoryId: 'cloud9', packages: [[$c
    }
       }
         }
-        
