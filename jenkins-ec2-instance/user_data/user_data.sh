@@ -9,16 +9,34 @@ sudo touch /etc/yum.repos.d/epel-apache-maven.repo
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
 sudo yum install -y apache-maven
-# Install java-1.8.0
+# Install java-1.8.0 OpenJDK
 sudo yum install -y java-1.8.0
-# sudo yum remove -y java-1.7.0-openjdk
-echo 2 | sudo update-alternatives --config java
+#Install Oracle Java Jdk1.814
+cd /tmp
+sudo wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
+sudo yum install -y jdk-8u141-linux-x64.rpm
+echo 3 | sudo update-alternatives --config java
 # Configure Java development env set Java home /ec2-user
-echo '
-export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
+sudo echo '
+export JAVA_HOME="/usr/java/jdk1.8.0_141/"
 PATH=$JAVA_HOME/bin:$PATH
+export M2_HOME="/usr/share/apache-maven"
+export M2=$M2_HOME/bin
+export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /home/ec2-user/.bashrc
+sudo echo '
+export JAVA_HOME="/usr/java/jdk1.8.0_141/"
+PATH=$JAVA_HOME/bin:$PATH
+export M2_HOME="/usr/share/apache-maven"
+export M2=$M2_HOME/bin
+export MAVEN_OPTS=-Xms256m -Xmx512m
+' >> /.bashrc
 sudo source /home/ec2-user/.bashrc
+sudo source /.bashrc
+#install docker
+sudo yum install docker -y
+#install zip
+sudo yum install -y zip
 # install AWS CLI
 sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 sudo unzip awscli-bundle.zip
@@ -31,6 +49,8 @@ nvm install 4.4.5
 node -e "console.log('Running Node.js ' + process.version)"
 #install gulp
 npm install --global gulp-cli
+#install zip
+sudo yum install -y p7zip-full p7zip-rar zip
 #Install Jenkins
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
