@@ -1,9 +1,9 @@
-pipeline {
-    agent any
-    environment {
-            mvnHome = '/usr/share/apache-maven/'
-        }
-    stages {
+node {
+   def mvnHome
+   stage('toolsetup') {
+
+      mvnHome = tool 'M3'
+   }
 
    stage('Preparation ') {
      steps {
