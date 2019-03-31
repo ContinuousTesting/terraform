@@ -20,6 +20,7 @@ echo '
 export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
 PATH=$JAVA_HOME/bin:$PATH
 ' >> /home/ec2-user/.bashrc
+sudo source /home/ec2-user/.bashrc
 # install AWS CLI
 sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 sudo unzip awscli-bundle.zip
@@ -32,3 +33,5 @@ nvm install 4.4.5
 node -e "console.log('Running Node.js ' + process.version)"
 # install gulp
 npm install --global gulp-cli
+#Install docker 
+sudo yum install docker 
