@@ -18,7 +18,7 @@ resource "aws_instance" "awslinux" {
 }
 
 data "template_file" "user_data" {
-  template = "${file("user_data/user_data.sh")}"
+  template = "${file("user_data/user_data.sh")}"   
   vars {
      name = "${var.name}"
       }
