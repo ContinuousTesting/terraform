@@ -1,14 +1,14 @@
 pipeline {
     agent any
-       def mvnHome
-
+    environment {
+            mvnHome = 'tool 'M3''
+        }
 
   stages {
 
    stage('Preparation ') {
 
      steps {
-      mvnHome = tool 'M3
       sh 'rm -fr * && git clone https://github.com/Hygieia/hygieia-core.git'
       sh 'git clone https://github.com/Hygieia/Hygieia.git'
       sh 'mv hygieia-core Hygieia/hygieia-core '
