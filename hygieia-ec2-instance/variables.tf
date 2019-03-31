@@ -10,12 +10,12 @@ variable "ami_id" {
 
 variable "instance_type" {
   description = "type of EC2 instance to provision."
-  default = "t2.micro"
+  default = "t2.small"
 }
 
 variable "name" {
   description = "name to pass to Name tag"
-  default = "devhost"
+  default = "Hygieia"
 }
 variable "associate_public_ip_address" {
   description = "Associate a public IP address with the instance"
@@ -26,7 +26,3 @@ variable "key_name" {
   description = "Name the key you will use to access the instance "
   default     = "devopslab"
   }
-
-
-
-

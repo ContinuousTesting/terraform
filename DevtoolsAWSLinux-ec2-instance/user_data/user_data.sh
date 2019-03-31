@@ -16,10 +16,20 @@ sudo yum install -y java-1.8.0
 # sudo yum remove -y java-1.7.0-openjdk
 echo 2 | sudo update-alternatives --config java
 # Configure Java development env set Java home /ec2-user
-echo '
+sudo echo '
 export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
 PATH=$JAVA_HOME/bin:$PATH
+export M2_HOME="/usr/share/apache-maven"
+export M2=$M2_HOME/bin
+export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /home/ec2-user/.bashrc
+sudo echo '
+export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64"
+PATH=$JAVA_HOME/bin:$PATH
+export M2_HOME="/usr/share/apache-maven"
+export M2=$M2_HOME/bin
+export MAVEN_OPTS=-Xms256m -Xmx512m
+' >> /.bashrc
 sudo source /home/ec2-user/.bashrc
 # install AWS CLI
 sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
@@ -33,5 +43,5 @@ nvm install 4.4.5
 node -e "console.log('Running Node.js ' + process.version)"
 # install gulp
 npm install --global gulp-cli
-#Install docker 
-sudo yum install docker 
+#Install docker
+sudo yum install docker
