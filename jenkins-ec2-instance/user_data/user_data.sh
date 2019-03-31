@@ -4,11 +4,7 @@
 sudo yum update -y
 #install git
 sudo yum install -y git
-# Install apache maven
-sudo touch /etc/yum.repos.d/epel-apache-maven.repo
-sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
-sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-sudo yum install -y apache-maven
+
 # Install java-1.8.0 OpenJDK
 sudo yum install -y java-1.8.0
 #Install Oracle Java Jdk1.814
@@ -16,6 +12,12 @@ cd /tmp
 sudo wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
 sudo yum install -y jdk-8u141-linux-x64.rpm
 echo 3 | sudo update-alternatives --config java
+
+# Install apache maven
+sudo touch /etc/yum.repos.d/epel-apache-maven.repo
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
 # Configure Java development env set Java home /ec2-user
 sudo echo '
 export JAVA_HOME="/usr/java/jdk1.8.0_141/"
