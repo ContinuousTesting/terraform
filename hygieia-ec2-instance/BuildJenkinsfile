@@ -3,11 +3,12 @@ pipeline {
 
     node {
        def mvnHome
-       mvnHome = tool 'M3
+
 
   stages {
 
    stage('Preparation ') {
+   mvnHome = tool 'M3
      steps {
 
       sh 'rm -fr * && git clone https://github.com/Hygieia/hygieia-core.git'
