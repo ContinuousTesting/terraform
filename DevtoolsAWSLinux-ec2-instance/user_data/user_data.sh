@@ -4,8 +4,7 @@
 sudo yum update -y
 #install git
 sudo yum install -y git
-#install zip
-sudo yum install -y zip
+
 # Install apache maven
 sudo touch /etc/yum.repos.d/epel-apache-maven.repo
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
@@ -31,6 +30,8 @@ export M2=$M2_HOME/bin
 export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /.bashrc
 sudo source /home/ec2-user/.bashrc
+# install zip 7z
+sudo yum install -y p7zip-full p7zip-rar zip
 # install AWS CLI
 sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 sudo unzip awscli-bundle.zip

@@ -4,8 +4,7 @@
 sudo yum update -y
 #install git
 sudo yum install -y git
-#install zip
-sudo yum install -y zip
+
 # Install apache maven
 sudo touch /etc/yum.repos.d/epel-apache-maven.repo
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
@@ -44,6 +43,8 @@ node -e "console.log('Running Node.js ' + process.version)"
 npm install --global gulp-cli
 #Configure  hygieia
 sudo chown -R ec2-user:ec2-user /opt
+#install 7zip and zip
+sudo yum install -y p7zip-full p7zip-rar zip
 # sudo cd  /opt
 # sudo wget *********A
 # sudo  uzip ******A
