@@ -10,7 +10,7 @@ pipeline {
       sh 'rm git clone https://github.com/Hygieia/hygieia-core.git'
       sh 'git clone https://github.com/Hygieia/Hygieia.git'
       sh 'mv hygieia-core Hygieia/hygieia-core '
-      sh 'export mvnHome = tool 'M3' 
+      sh 'export mvnHome=tool 'M3'' 
    }
    }
    stage('Build') {
