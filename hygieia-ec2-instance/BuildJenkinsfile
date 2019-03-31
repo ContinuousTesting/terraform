@@ -1,12 +1,9 @@
-node {
-   def mvnHome
-
-   stages {
-          stage('Preparation') {
-
-       mvnHome = tool 'M3'
-   }
-
+pipeline {
+    agent any
+    environment {
+            mvnHome = '/usr/share/apache-maven/'
+        }
+    stages {
 
    stage('Preparation ') {
      steps {
