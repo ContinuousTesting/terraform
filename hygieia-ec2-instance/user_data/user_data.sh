@@ -43,7 +43,7 @@ sudo rm -fr awscli-bundle.zip
 # Install Nodejs
 sudo yum install -y nodejs npm --enablerepo=epel
 sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
-export NVM_DIR="/.nvm" [ -s "$NVM_DIR/nvm.sh" ] &&  "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="/.nvm" 
 nvm install 4.4.5
 npm install -g gulp
 #install zip

@@ -22,14 +22,12 @@ export JAVA_HOME="/usr/java/jdk1.8.0_141/"
 PATH=$JAVA_HOME/bin:$PATH
 export M2_HOME="/usr/share/apache-maven"
 export M2=$M2_HOME/bin
-export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /home/ec2-user/.bashrc
 sudo echo '
 export JAVA_HOME="/usr/java/jdk1.8.0_141/"
 PATH=$JAVA_HOME/bin:$PATH
 export M2_HOME="/usr/share/apache-maven"
 export M2=$M2_HOME/bin
-export MAVEN_OPTS=-Xms256m -Xmx512m
 ' >> /.bashrc
 sudo source /home/ec2-user/.bashrc
 sudo source /.bashrc
@@ -43,7 +41,7 @@ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 # Install Nodejs
 sudo yum install -y nodejs npm --enablerepo=epel
 sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
-export NVM_DIR="~/.nvm" [ -s "$NVM_DIR/nvm.sh" ] &&  "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="/.nvm"
 nvm install 4.4.5
 npm install -g gulp
 #Install docker
