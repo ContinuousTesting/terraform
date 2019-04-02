@@ -24,11 +24,6 @@ description = "List of availability zones of instances"
 value       = ["${local.this_availability_zone}"]
 }
 
-// GH issue: https://github.com/terraform-aws-modules/terraform-aws-ec2-instance/issues/8
-//output "placement_group" {
-//  description = "List of placement groups of instances"
-//  value       = ["${element(concat(aws_instance.this.*.placement_group, list("")), 0)}"]
-//}
 
 output "key_name" {
 description = "List of key names of instances"
