@@ -4,7 +4,6 @@
 sudo yum update -y
 #install git
 sudo yum install -y git
-
 # Install java-1.8.0 OpenJDK
 sudo yum install -y java-1.8.0
 #Install Oracle Java Jdk1.814
@@ -46,7 +45,6 @@ sudo curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.s
 export NVM_DIR="/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm install 4.4.5
 npm install -g gulp
-
 #install zip
 sudo yum install -y p7zip-full p7zip-rar zip
 #Install Jenkins
