@@ -12,13 +12,17 @@ resource "aws_instance" "awslinux" {
   availability_zone = "${var.aws_region}a"
   user_data = "${data.template_file.user_data.rendered}"
   key_name = "${var.key_name}"
+  root_block_device = [{
+   volume_type = "gp2"
+   volume_size = 30
+ }]
  tags {
     Name = "${var.name}"
   }
 }
 
 data "template_file" "user_data" {
-  template = "${file("user_data/user_data.sh")}"   
+  template = "${file("user_data/user_data.sh")}"
   vars {
      name = "${var.name}"
       }
