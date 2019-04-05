@@ -9,17 +9,17 @@ pipeline {
      steps {
 
       sh 'mkdir -p tmp && cd tmp && rm -fr * && git clone https://github.com/Hygieia/hygieia-core.git'
-      sh 'git clone https://github.com/Hygieia/Hygieia.git'
-      sh 'mv hygieia-core Hygieia/hygieia-core '
+      sh 'cd tmp && git clone https://github.com/Hygieia/Hygieia.git'
+      sh 'cd tmp && mv hygieia-core Hygieia/hygieia-core '
 
    }
    }
    stage('Build') {
         steps {
 
-         sh 'cd Hygieia/hygieia-core/ && ${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package'
-         sh 'cd Hygieia && ${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package'
-         sh 'zip -r hygieia.zip Hygieia/ '
+         sh 'cd tmp && Hygieia/hygieia-core/ && ${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package'
+         sh 'cd tmp && Hygieia && ${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package'
+         sh 'cd tmp && zip -r hygieia.zip Hygieia/ '
       }
       }
 
